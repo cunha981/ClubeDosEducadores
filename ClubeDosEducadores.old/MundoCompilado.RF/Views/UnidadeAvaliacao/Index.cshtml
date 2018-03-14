@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ViewModel.UnidadeAvaliacaoVMs.UnidadeAvaliacaoListVM>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Avaliação</title>
+    <link href="~/assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/assets/css/custom.css" rel="stylesheet" />
+    <link href="~/assets/css/font-awesome.css" rel="stylesheet" />
+</head>
+<body>
+    @if (Model.Any())
+    {
+    <div class="list-group">
+        @foreach (var item in Model)
+        {
+
+            <div class="list-group-item">
+                <div class="star-rating col-xs-8">
+                    <span class="fa @(item.Nota >= 1 ? "fa-star" : "fa-star-o") fa-2x yellow"></span>
+                    <span class="fa @(item.Nota >= 1 ? "fa-star" : "fa-star-o") fa-2x yellow"></span>
+                    <span class="fa @(item.Nota >= 1 ? "fa-star" : "fa-star-o") fa-2x yellow"></span>
+                    <span class="fa @(item.Nota >= 1 ? "fa-star" : "fa-star-o") fa-2x yellow"></span>
+                    <span class="fa @(item.Nota >= 1 ? "fa-star" : "fa-star-o")  fa-2x yellow"></span>
+                </div>
+                <div class="col-xs-4">
+                    <span class="bold pull-right">@item.DtAvaliacao.ToString("dd/MM/yyyy")</span>
+                </div>
+                <div class="col-xs-12">
+                    <span class="list-group-item-text">@item.Comentario</span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        }
+    </div>
+    }
+    else
+    {
+        <div>
+            <center>
+                <div>
+                    <h4>Por enquanto ninguém fez avaliações para esta unidade.</h4>
+                </div>
+                <div style="font-size: 10px;">
+                    <span class="bold">Avaliações podem levar até duas horas para serem exibidas após cadastradas!</span>
+                </div>
+            </center>
+        </div>
+    }
+    <script src="~/assets/js/jquery-1.10.2.js"></script>
+    <script src="~/assets/js/bootstrap.min.js"></script>
+</body>
+</html>

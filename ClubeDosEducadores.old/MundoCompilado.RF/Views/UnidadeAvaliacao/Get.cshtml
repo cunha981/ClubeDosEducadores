@@ -1,0 +1,51 @@
+﻿@model ViewModel.UnidadeAvaliacaoVMs.UnidadeAvaliacaoPostVM
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Avaliação</title>
+    <link href="~/assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/assets/css/custom.css" rel="stylesheet" />
+    <link href="~/assets/css/font-awesome.css" rel="stylesheet" />
+</head>
+<body>
+    @Html.ShowAlert()
+    <form action="~/UnidadeAvaliacao/Post" method="post">
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.UnidadeId)
+        <div>
+            <center>
+                <label class="bold">Quantas estrelas classifica a unidade? </label>
+                <div class="star-rating">
+                    <span class="fa fa-star-o fa-2x yellow" data-rating="1"></span>
+                    <span class="fa fa-star-o fa-2x yellow" data-rating="2"></span>
+                    <span class="fa fa-star-o fa-2x yellow" data-rating="3"></span>
+                    <span class="fa fa-star-o fa-2x yellow" data-rating="4"></span>
+                    <span class="fa fa-star-o  fa-2x yellow" data-rating="5"></span>
+                    <input type="hidden" name="Nota" class="rating-value" value="@Model.Nota">
+                </div>
+                @Html.BootstrapValidationMessageFor(model => model.Nota)
+
+                <div class="col-xs-12 m-t-3">
+                    <textarea name="Comentario" id="Comentario" class="form-control" rows="4" placeholder="Digite o que acha desta unidade...">@Model.Comentario</textarea>
+                    @Html.BootstrapValidationMessageFor(model => model.Comentario)
+                </div>
+            </center>
+        </div>
+        <div>
+            <input type="submit" class="btn btn-success pull-right m-t-3" value="Salvar" />
+        </div>
+    </form>
+    <script src="~/assets/js/jquery-1.10.2.js"></script>
+    <script src="~/assets/js/bootstrap.min.js"></script>
+    <script src="~/assets/js/jquery.mask.min.js"></script>
+    <script src="~/assets/js/domains/default.js"></script>
+    <script src="~/assets/js/domains/unidade-avaliacao-get.js"></script>
+</body>
+</html>

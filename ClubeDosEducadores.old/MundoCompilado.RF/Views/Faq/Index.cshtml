@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Model.PerguntaFrequente>
+@{
+    ViewBag.Title = "FAQ";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    ViewBag.Menu = "FAQ";
+    ViewBag.PageTitle = "Perguntas e Respostas frequentes";
+    ViewBag.PageDescription = "Navegue entre as mais variadas dúvidas encontradas entre os funcionários da SME.";
+}
+<form action="~/Faq">
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="Digite aqui para pesquisar ou filtrar" name="text" value="@ViewBag.Search">
+        <span class="input-group-addon pointer" onclick="$('form').submit()">
+            <i class="fa fa-search"></i>
+        </span>
+    </div>
+</form>
+<div class="panel-group m-t-3" id="accordion" role="tablist" aria-multiselectable="true">
+    @foreach (var item in Model)
+    {
+        <div class="panel panel-default m-b-2">
+            <div class="panel-heading" role="tab" id="heading@(item.Id)">
+                <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse@(item.Id)" aria-controls="collapse@(item.Id)">
+                        @item.Pergunta
+                    </a>
+                </h4>
+            </div>
+            <div id="collapse@(item.Id)" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading@(item.Id)">
+                <div class="panel-body">
+                    @Html.Raw(item.Resposta)
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

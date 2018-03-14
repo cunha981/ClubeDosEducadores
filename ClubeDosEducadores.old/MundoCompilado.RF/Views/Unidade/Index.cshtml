@@ -1,0 +1,183 @@
+﻿@model PagedList.IPagedList<ViewModel.UnidadeVMs.UnidadeListVM>
+@using ViewModel.Filters
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Unidades";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    ViewBag.Menu = "Unidades";
+    ViewBag.PageTitle = "Unidades";
+    ViewBag.PageDescription = "Consulte todas unidades";
+    ViewBag.HidePageHeader = true;
+
+    UnidadeListFilter filter = ViewBag.Filter ?? new UnidadeListFilter();
+}
+<link href="~/assets/css/bootstrap-multiselect.css" rel="stylesheet" />
+@Html.ShowAlert()
+@using (Html.BeginForm("Index", "Unidade", FormMethod.Get))
+{
+    <div class="row">
+        <div class="col-md-2">
+            <select class="form-control" multiple="multiple" name="Tipos" id="Tipos">
+                @foreach (var option in (IEnumerable<ViewModel.TipoUnidadeVMs.TipoUnidadeOptionVM>)ViewBag.TipoOptions)
+                {
+                    <option value="@option.Id" @(!filter.Tipos.Any() || filter.Tipos.Any(a => a == option.Id) ? "selected='selected'" : "")>@option.Tipo</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-7">
+            <input type="text" class="form-control" placeholder="Digite parte do nome da unidade para pesquisar" name="Filtro" id="Filtro" value="@filter.Filtro" />
+        </div>
+        <div class="col-md-2">
+            <select class="form-control" id="Distancia" name="Distancia">
+                <option value="5000">Distância</option>
+                <option value="5" @(filter.Distancia == 5 ? "selected='selected'" : "")>Até 5 Km</option>
+                <option value="10" @(filter.Distancia == 10 ? "selected='selected'" : "")>Até 10 Km</option>
+                <option value="15" @(filter.Distancia == 15 ? "selected='selected'" : "")>Até 15 Km</option>
+                <option value="20" @(filter.Distancia == 20 ? "selected='selected'" : "")>Até 20 Km</option>
+                <option value="25" @(filter.Distancia == 25 ? "selected='selected'" : "")>Até 25 Km</option>
+            </select>
+        </div>
+        <div class="col-md-1">
+            <button class="btn btn-default">
+                <i class="fa fa-search"></i>
+            </button>
+        </div>
+    </div>
+}
+<div class="clearfix"></div>
+<hr />
+<table class="table table-striped table-hover table-bordered">
+    <thead>
+        <tr>
+            <th>
+                Categoria
+            </th>
+            <th>
+                Unidade
+            </th>
+            <th>
+                Difícil Acesso
+            </th>
+            <th>
+                Endereço
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var unidade in Model)
+        {
+            <tr class="pointer unidade-row text-small" key="@unidade.Id">
+                <td>
+                    @unidade.Tipo
+                </td>
+                <td>
+                    @unidade.Nome
+                </td>
+                <td class="text-center">
+                    @(unidade.DificilAcesso.HasValue ? unidade.DificilAcesso.ToString() + "%" : "*")
+                </td>
+                <td>
+                    @unidade.Endereco
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="clearfix"></div>
+<div class="pull-right bold">
+    <strong>Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount</strong>
+</div>
+<div class="center-div-h">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { Page = page, Filtro = filter.Filtro, Distancia = filter.Distancia })
+        + "&" + string.Join("&", filter.Tipos.Select(a => "tipos=" + a)))
+</div>
+<div class="modal fade" tabindex="-1" role="dialog" id="modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="nome"></h4>
+            </div>
+            <div class="modal-body">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active">
+                        <a href="#nav-unidade" aria-controls="nav-unidade" role="tab" data-toggle="tab" aria-expanded="true">Unidade</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#nav-avaliacao" aria-controls="nav-avaliacao" role="tab" data-toggle="tab" aria-expanded="false">Avaliações</a>
+                    </li>
+                </ul>
+                <div class="tab-content m-t-2">
+                    <div id="nav-unidade" class="tab-pane fade active in">
+                        <div class="row col-md-12">
+                            <label>Categoria: </label>
+                            <span id="tipo"></span>
+                            <span> - </span>
+                            <span id="tipo-descricao"></span>
+                        </div>
+                        <div class="row col-md-12 m-t-1">
+                            <label>Difícil Acesso: </label>
+                            <span id="dificil-acesso"></span>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="row m-t-1">
+                            <div class="col-md-6">
+                                <label>Telefone 1: </label>
+                                <span id="telefone-principal"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Telefone 2:</label>
+                                <span id="telefone-secundario"></span>
+                            </div>
+                        </div>
+                        <div class="row col-md-12 m-t-1">
+                            <label class="">E-mail: </label>
+                            <span class="" id="email"></span>
+                        </div>
+                        <div class="row col-md-12 m-t-1">
+                            <label class="">Site da Unidade (EOL): </label>
+                            <a href="#" target="_blank" id="site">Clique aqui para acessar</a>
+                        </div>
+                        <div class="row col-md-12 m-t-1">
+                            <label class="">Distância de sua residência: </label>
+                            <span class="" id="distancia"></span>
+                        </div>
+                        <div class="row col-md-12 m-t-1">
+                            <label>Endereço: </label>
+                            <span id="endereco"></span>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div id="map" class="m-t-1" style="height: 200px;"></div>
+                    </div>
+                    <div id="nav-avaliacao" class="tab-pane fade">
+                        <div class="col-xs-12">
+                            <iframe class="border-0 full-width" id="avaliacao-iframe" height="370"></iframe>
+                            <div id="avaliacao-modal-loading">
+                                <center>
+                                    <i class="fa fa-spinner fa-spin fa-3x"></i>
+                                    <div>
+                                        <label>
+                                            Carregando avaliações...
+                                        </label>
+                                    </div>
+                                </center>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <strong class="pull-left col-md-10 text-left">
+                    <small>
+                        A distância entre sua residência e a unidade é calculada sem considerar o trajeto, por isto use apenas como estimativa!
+                    </small>
+                </strong>
+                <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/assets/js/bootstrap-multiselect.js"></script>
+<script src="~/assets/js/domains/unidadeList.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqs0t9Z-3RLmsPc8uoWrMEOP2PVMICHA4&signed_in=true&callback=initMap"></script>

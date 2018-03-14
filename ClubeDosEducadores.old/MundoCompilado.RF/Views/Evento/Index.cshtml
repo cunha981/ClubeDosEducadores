@@ -1,0 +1,45 @@
+﻿@model PagedList.IPagedList<ViewModel.EventoVMs.EventoListVM>
+@using PagedList.Mvc
+@using ViewModel.Filters
+@using Model.Enums;
+@{
+    TipoEventoEnum tipoEvento = ViewBag.TipoEvento;
+    var title = tipoEvento != TipoEventoEnum.Indefinido ? tipoEvento.GetDescription() : "Notícias e Avisos";
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    ViewBag.Menu = "Evento";
+    ViewBag.SubMenu = tipoEvento.ToString();
+    ViewBag.PageTitle = title;
+    ViewBag.PageDescription = "Clique em <strong>\"Mais detalhes\"</strong> para obter mais informações sobre a publicação!";
+}
+@foreach (var item in Model)
+{
+    <div class="panel panel-default">
+        <div class="panel-heading bg-white">
+            <h3 class="panel-title">
+                <a href="~/Evento/Get/@item.Id">@Html.DisplayFor(modelItem => item.Titulo)</a>
+            </h3>
+        </div>
+        <div class="panel-body">
+            <small>@item.Resumo</small>
+        </div>
+        <div class="panel-footer">
+            <small>
+                <strong>Quando:</strong>
+                <span>@item.DtEvento.ToString("dd/MM/yyyy HH:mm")</span>
+                <strong class="pull-right">
+                    <a href="~/Evento/Get/@item.Id">Mais detalhes</a>
+                </strong>
+            </small>
+        </div>
+    </div>
+}
+
+<div class="clearfix"></div>
+<div class="pull-right bold">
+    <strong>Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount</strong>
+</div>
+<div class="center-div-h">
+    @Html.PagedListPager(Model, page => Url.Action("Index", tipoEvento))
+</div>

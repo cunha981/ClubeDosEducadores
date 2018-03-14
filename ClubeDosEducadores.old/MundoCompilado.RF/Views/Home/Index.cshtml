@@ -1,0 +1,338 @@
+﻿@model ViewModel.FaleConoscoVMs.FaleConoscoPortfolioVM
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Facilitando a vida funcional dos educadores da Prefeitura de São Paulo">
+    <meta name="author" content="Clube dos Educadores">
+    <link rel="shortcut icon" type="image/png" href="~/assets/img/kbca-cida.ico" />
+
+    <title>Clube dos Educadores</title>
+    <link href="~/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="~/assets/css/freelancer.css" rel="stylesheet">
+    <link href="~/assets/css/font-awesome.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body id="page-top" class="index">
+    <!-- Navigation -->
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll bg-transparent">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="#page-top">Clube dos Educadores</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#portfolio">Soluções</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#about">Sobre</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#contact">Contato</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="~/Noticia">Notícias</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="~/Dashboard">Entrar <i class="fa fa-arrow-right"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    <!-- Header -->
+    <header class="bg-chalkboard">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <img class="img-responsive" src="~/assets/img/logo-press-c-300.png" alt="">
+                    <div class="intro-text">
+                        <div class="img-centered text-center">
+                            <div class="img-name-w" style="width: 80%; margin: 0 auto;"></div>
+                        </div>
+                        <hr class="star-light">
+                        <span class="skills">Soluções e facilidades para sua carreira pública</span>
+                        <div class="col-lg-8 col-lg-offset-2 text-center">
+                            <a href="~/Dashboard" class="btn btn-lg btn-outline">
+                                <i class="fa fa-chevron-right"></i>
+                                &nbsp;Acessar
+                                <i class="fa fa-chevron-left"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Portfolio Grid Section -->
+    <section id="portfolio">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Soluções</h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 portfolio-item">
+                    <div>
+                        <div>
+                            <i class="fa fa-graduation-cap fa-2x m-t-1"></i>
+                            <span class="bold main-text">
+                                Consulta de unidades
+                            </span>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="m-t-3">
+                        <p>
+                            Pesquise entre todas as Unidades da SME para obter informações para contato e como chegar até o local.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-sm-4 portfolio-item">
+                    <div>
+                        <div>
+                            <i class="fa fa-compress fa-2x m-t-1"></i>
+                            <span class="bold main-text">
+                                Permutas
+                            </span>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="m-t-3">
+                        <p>
+                            Crie uma proposta de Permuta para divulgar entre todos ou consulte a lista de propostas disponíveis.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-sm-4 portfolio-item">
+                    <div>
+                        <div>
+                            <i class="fa fa-exchange fa-2x m-t-1"></i>
+                            <span class="bold main-text">
+                                Remoções
+                            </span>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="m-t-3">
+                        <p>
+                            Deixe que o sistema crie sua lista de remoção inicial, indicando até 500 unidades, podendo filtrar por distância, difícil acesso e tipos de unidade.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-sm-4 portfolio-item">
+                    <div>
+                        <div>
+                            <i class="fa fa-star fa-2x m-t-1"></i>
+                            <span class="bold main-text">
+                                Avaliações / Comentários
+                            </span>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="m-t-3">
+                        <p>
+                            Veja notas e comentários que deram para determinada unidade ou dê sua avaliação para onde você trabalha atualmente.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-sm-4 portfolio-item">
+                    <div>
+                        <div>
+                            <i class="fa fa-life-saver fa-2x m-t-1"></i>
+                            <span class="bold main-text">
+                                FAQ
+                            </span>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="m-t-3">
+                        <p>
+                            Está com alguma dúvida? Consulte nosso FAQ baseado nas dúvidas mais comuns que recebemos ou encontramos nas redes sociais.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-sm-4 portfolio-item">
+                    <div>
+                        <div>
+                            <i class="fa fa-newspaper-o fa-2x m-t-1"></i>
+                            <span class="bold main-text">
+                                Notícias
+                            </span>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="m-t-3">
+                        <p>
+                            Fique sempre atualizado com notícias e publicações no Diário Oficial.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About Section -->
+    <section class="success" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Sobre</h2>
+                    <hr class="star-light">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-2">
+                    <p>Clube dos Educadores é um sistema especializado em oferecer soluções para o dia a dia dos funcionários públicos da Secretaria Municipal de Educação,<br/>São Paulo - SP.</p>
+                </div>
+                <div class="col-lg-4">
+                    <p>Confira publicações do Diário Oficial, gere sua lista de remoção sem perder tempo, tire dúvidas sobre evolução funcional, férias, etc. Faça seu cadastro e desfrute de todas facilidades!</p>
+                </div>
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <a href="~/Dashboard" class="btn btn-lg btn-outline">
+                        <i class="fa fa-chevron-right"></i>
+                        &nbsp;Acessar
+                        <i class="fa fa-chevron-left"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Fale Conosco</h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            @Html.ShowAlert()
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
+                    <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
+                    <form name="sentMessage" id="contactForm" method="post">
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>Nome</label>
+                                <input type="text" class="form-control" placeholder="Nome completo" name="Nome" id="name" required data-validation-required-message="Por favor informe seu nome.">
+                                @Html.BootstrapValidationMessageFor(a => a.Nome)
+                            </div>
+                        </div>
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>E-mail</label>
+                                <input type="email" class="form-control" placeholder="E-mail" name="Email" id="email" required data-validation-required-message="Por favor informe seu e-mail.">
+                                @Html.BootstrapValidationMessageFor(a => a.Email)
+                            </div>
+                        </div>
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>Celular</label>
+                                <input type="tel" class="form-control sp_celphones" placeholder="Celular" name="Celular" id="phone" required data-validation-required-message="Por favor informe seu celular.">
+                                @Html.BootstrapValidationMessageFor(a => a.Celular)
+                            </div>
+                        </div>
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>Mensagem</label>
+                                <textarea rows="5" class="form-control" placeholder="Mensagem" name="Mensagem" id="message" required data-validation-required-message="Por favor digite sua mensagem."></textarea>
+                                @Html.BootstrapValidationMessageFor(a => a.Mensagem)
+                            </div>
+                        </div>
+                        <br>
+                        <div id="success"></div>
+                        <div class="row">
+                            <div class="form-group col-xs-12">
+                                <button type="submit" class="btn btn-success btn-lg">Enviar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="footer-above">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col col-md-4">
+                        <h3>Contato</h3>
+                        <p>
+                            (11) 98201-0816  /  (11) 98602-4048
+                            <br>contato@clubeeducadores.com.br
+                        </p>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <a href="https://www.facebook.com/clubedoseducadores" target="_blank" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
+                        <h3>@@clubedoseducadores</h3>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <h3>Mais Informações</h3>
+                        <small><span>Somos um grupo independente, motivados a partir das necessidades dos funcionários da SME em prover soluções inovadoras, portanto não temos vínculo algum com a prefeitura ou sindicatos.</span></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-below">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        Copyright &copy; Clube dos Educadores <span class="current-year"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
+        <a class="btn btn-primary" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </div>
+    <script src="~/assets/js/jquery-1.10.2.js"></script>
+    <script src="~/assets/js/bootstrap.min.js"></script>
+    <script src="~/assets/js/jquery.mask.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="~/assets/js/jqBootstrapValidation.js"></script>
+    <script src="~/assets/js/contact_me.js"></script>
+    <script src="~/assets/js/freelancer.js"></script>
+    <script>
+        $(function () {
+            @if(ViewBag.ContactSection != null)
+            {
+            <text>
+            var offset = 20;
+
+            $('html, body').animate({
+                scrollTop: $("#contact").offset().top + offset
+            }, 2000);
+            </text>
+            }
+        })
+    </script>
+</body>
+</html>

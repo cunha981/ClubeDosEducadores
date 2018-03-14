@@ -1,0 +1,225 @@
+﻿@model ViewModel.PermutaVMs.PermutaGetVM
+
+@{
+    var user = (ViewModel.UsuarioVMs.UserOnline)Session["UserOnline"];
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" type="image/png" href="~/assets/img/kbca-cida.ico" />
+    <link href="~/assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/assets/css/custom.css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <script src="~/assets/js/jquery-1.10.2.js"></script>
+    <script src="~/assets/js/domains/default.js"></script>
+    <link href="~/assets/css/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/assets/css/jquery-ui.structure.min.css" rel="stylesheet" />
+    <title>Proposta @Model.Id</title>
+</head>
+<body>
+
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#proposta" aria-controls="proposta" role="tab" data-toggle="tab" aria-expanded="true">Proposta</a>
+        </li>
+        <li role="presentation">
+            <a href="#unidade" aria-controls="unidade" role="tab" data-toggle="tab" aria-expanded="false">Onde trabalho</a>
+        </li>
+        <li role="presentation">
+            <a href="#nav-avaliacao" aria-controls="nav-avaliacao" role="tab" data-toggle="tab" aria-expanded="false">Avaliações</a>
+        </li>
+        <li role="presentation">
+            <a href="#contato" aria-controls="contato" role="tab" data-toggle="tab" aria-expanded="false">Contato</a>
+        </li>
+    </ul>
+
+    <div class="tab-content m-t-2">
+        <div id="proposta" class="tab-pane fade active in">
+            <div>
+                <label>
+                    Informações sobre a vaga:
+                </label>
+                <div>
+                    <span>
+                        @Model.ObservacaoFuncionario
+                    </span>
+                </div>
+            </div>
+            <hr />
+            <div>
+                <label>
+                    Informações sobre a vaga desejada:
+                </label>
+                <div>
+                    <span>
+                        @Model.ObservacaoPermuta
+                    </span>
+                </div>
+            </div>
+            <hr />
+            <div>
+                <label>Regiões:</label>
+                <div>
+                    <div class="col-md-4">
+                        <ul>
+                            @foreach (var regiao in Model.Regioes.Take(5))
+                            {
+                                <li>@regiao</li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <ul>
+                            @foreach (var regiao in Model.Regioes.Skip(5).Take(5))
+                            {
+                                <li>@regiao</li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <ul>
+                            @foreach (var regiao in Model.Regioes.Skip(10))
+                            {
+                                <li>@regiao</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="clearfix"></div>
+            <div>
+                <label>Categorias:</label>
+                <div>
+                    <div class="">
+                        <ul>
+                            @foreach (var tipo in Model.TiposUnidade)
+                            {
+                                <li>@tipo</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div id="unidade" class="tab-pane fade">
+            <div class="row col-md-12">
+                <label>Unidade: </label>
+                <span id="unidade-nome">@Model.Unidade.Nome</span>
+            </div>
+            <div class="row col-md-12 m-t-1">
+                <label>Categoria: </label>
+                <span id="tipo">@Model.Unidade.Tipo</span>
+                <span> - </span>
+                <span id="tipo-descricao">@Model.Unidade.TipoDescricao</span>
+            </div>
+            <div class="row col-md-12 m-t-1">
+                <label>Difícil Acesso: </label>
+                <span id="dificil-acesso">@Model.Unidade.DificilAcesso.GetConcat("Não informado", "%")</span>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row m-t-1">
+                <div class="col-xs-6">
+                    <label>Telefone 1: </label>
+                    <span id="telefone-principal">@(Model.Unidade.TelefonePrincipal ?? "Não informado")</span>
+                </div>
+                <div class="col-xs-5">
+                    <label>Telefone 2:</label>
+                    <span id="telefone-secundario">@(Model.Unidade.TelefoneSecundario ?? "Não informado")</span>
+                </div>
+            </div>
+            <div class="row col-md-12 m-t-1">
+                <label class="">E-mail: </label>
+                <span class="" id="email">@(Model.Unidade.Email ?? "Não informado")</span>
+            </div>
+            @if (!Model.Unidade.Url.IsEmpty())
+            {
+                <div class="row col-md-12 m-t-1">
+                    <label class="">Site da Unidade (EOL): </label>
+                    <a href="@Model.Unidade.Url" target="_blank" id="site">Clique aqui para acessar</a>
+                </div>
+            }
+            <div class="row col-md-12 m-t-1">
+                <i class="fa fa-question-circle" data-toggle="tooltip" title="A distância entre sua residência e a unidade é calculada sem considerar o trajeto, por isto use apenas como estimativa!"></i>
+                <label class="">Distância de sua residência: </label>
+                <span class="" id="distancia">
+                    @Html.Raw(Model.Unidade.Distancia.HasValue ?
+                Model.Unidade.Distancia.Value.Round() + "Km - <a target='_blank' href='https://maps.google.ca/maps?saddr=" + user.Latitude.GetString(",",".") + "," + user.Longitude.GetString(",", ".") + "&amp;daddr=" + Model.Unidade.Latitude.GetString(",", ".") + "," + Model.Unidade.Longitude.GetString(",", ".") + "&amp;dirflg=d'>Como chegar?</a>"
+                : "*")
+                </span>
+            </div>
+            <div class="row col-md-12 m-t-1">
+                <label>Endereço: </label>
+                <span id="endereco">@Model.Unidade.Endereco</span>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div id="nav-avaliacao" class="tab-pane fade">
+            @if (Model.Avaliacoes.Any())
+            {
+                <div class="list-group">
+                    @foreach (var item in Model.Avaliacoes)
+                    {
+
+                        <div class="list-group-item">
+                            <div class="star-rating col-xs-8">
+                                <span class="fa @(item.Nota >= 1 ? "fa-star" : "fa-star-o") fa-2x yellow"></span>
+                                <span class="fa @(item.Nota >= 1 ? "fa-star" : "fa-star-o") fa-2x yellow"></span>
+                                <span class="fa @(item.Nota >= 1 ? "fa-star" : "fa-star-o") fa-2x yellow"></span>
+                                <span class="fa @(item.Nota >= 1 ? "fa-star" : "fa-star-o") fa-2x yellow"></span>
+                                <span class="fa @(item.Nota >= 1 ? "fa-star" : "fa-star-o")  fa-2x yellow"></span>
+                            </div>
+                            <div class="col-xs-4">
+                                <span class="bold pull-right">@item.DtAvaliacao.ToString("dd/MM/yyyy")</span>
+                            </div>
+                            <div class="col-xs-12">
+                                <span class="list-group-item-text">@item.Comentario</span>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <div>
+                    <center>
+                        <div>
+                            <h4>Por enquanto ninguém fez avaliações para esta unidade.</h4>
+                        </div>
+                        <div style="font-size: 10px;">
+                            <span class="bold">Avaliações podem levar até duas horas para serem exibidas após cadastradas!</span>
+                        </div>
+                    </center>
+                </div>
+            }
+        </div>
+        <div id="contato" class="tab-pane fade">
+            <div>
+                <span class="bold">Nome:</span>
+                <span>@Model.FuncionarioNome</span>
+            </div>
+            <div class="m-t-1">
+                <span class="bold">E-mail:</span>
+                <span>@Model.FuncionarioEmail</span>
+            </div>
+            <div class="m-t-1">
+                <span class="bold">Telefone:</span>
+                <span>@(string.IsNullOrWhiteSpace(Model.FuncionarioTelefone) ? "Não informado" : Model.FuncionarioTelefone)</span>
+            </div>
+            <div class="m-t-1">
+                <span class="bold">Celular:</span>
+                <span>@(string.IsNullOrWhiteSpace(Model.FuncionarioCelular) ? "Não informado" : Model.FuncionarioCelular)</span>
+            </div>
+        </div>
+    </div>
+    <script src="~/assets/js/jquery-ui.min.js"></script>
+    <script src="~/assets/js/jquery.mask.min.js"></script>
+    <script src="~/assets/js/bootstrap.min.js"></script>
+</body>
+</html>

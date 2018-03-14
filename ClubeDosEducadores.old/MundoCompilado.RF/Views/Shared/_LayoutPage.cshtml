@@ -1,0 +1,189 @@
+﻿@{
+    var menu = ViewBag.Menu;
+    var submenu = ViewBag.SubMenu;
+    var user = (ViewModel.UsuarioVMs.FuncionarioOnline)Session[MundoCompilado.RF.App_Start.FuncionarioProvider.SESSION_USER_NAME];
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" type="image/png" href="~/assets/img/kbca-cida.ico" />
+    <link href="~/assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/assets/css/custom.css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <script src="~/assets/js/jquery-1.10.2.js"></script>
+    <script src="~/assets/js/domains/default.js"></script>
+    <link href="~/assets/css/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/assets/css/jquery-ui.structure.min.css" rel="stylesheet" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.8&appId=146579899175091";
+            fjs.parentNode.insertBefore(js, fjs);
+        } (document, 'script', 'facebook-jssdk'));</script>
+    <div id="wrapper">
+        <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="~/Dashboard">Clube dos Educadores</a>
+            </div>
+            <div class="col-md-8">
+                <div class="fb-like" data-href="https://www.facebook.com/clubedoseducadores" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+            </div>
+            <div class="col-md-1 pull-right" style="color: white; padding: 0px 50px 0px 50px;">
+                <span class="">
+                    &nbsp;
+                    <a href="~/Auth/Sair" class="btn btn-info square-btn-adjust">
+                        Sair
+                    </a>
+                </span>
+            </div>
+        </nav>
+        <!-- /. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                    <li class="text-center">
+                        <a class="deco-none pointer" href="~/Funcionario">
+                            <img src="~/assets/img/kbca_cida-3.png" class="user-image img-responsive" />
+                            <div class="white m-b-2 bold">
+                                <div>
+                                    <span>
+                                        @user.Nome
+                                    </span>
+                                </div>
+                                <div>
+                                    <span class="text-small">
+                                        @user.Cargo
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/Dashboard" @(menu == "Inicio" ? "class=active-menu" : "")>
+                            <i class="fa fa-home fa-3x m-r-1"></i> Início
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/Funcionario" @(menu == "MeusDados" ? "class=active-menu" : "")>
+                            <i class="fa fa-male fa-3x m-r-1"></i> Meus Dados
+                        </a>
+                    </li>
+                    <li @(menu == "Evento" ? "class=active" : "")>
+                        <a href="javascript:void(0)">
+                            <i class="fa fa-newspaper-o fa-3x"></i> Notícias e Avisos
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul @Html.Raw(menu == "Evento" ? ("class=\"nav nav-second-level collapse in\" aria-expanded=\"true\"") : ("class=\"nav nav-second-level collapse\""))>
+                            <li>
+                                <a href="~/Evento/Index/0" @(submenu == "Indefinido" ? "class=active-menu" : "")>Geral</a>
+                            </li>
+                            <li>
+                                <a href="~/Evento/Index/Noticia" @(submenu == "Noticia" ? "class=active-menu" : "")>Notícias</a>
+                            </li>
+                            <li>
+                                <a href="~/Evento/Index/Aviso" @(submenu == "Aviso" ? "class=active-menu" : "")>Avisos</a>
+                            </li>
+                            <li>
+                                <a href="~/Evento/Index/Concurso" @(submenu == "Concurso" ? "class=active-menu" : "")>Concursos</a>
+                            </li>
+                            <li>
+                                <a href="~/Evento/Index/Curso" @(submenu == "Curso" ? "class=active-menu" : "")>Cursos</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li @(menu == "Remocao" ? "class=active" : "")>
+                        <a href="javascript:void(0)">
+                            <i class="fa fa-exchange fa-3x"></i> Remoção
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul @Html.Raw(menu == "Remocao" ? ("class=\"nav nav-second-level collapse in\" aria-expanded=\"true\"") : ("class=\"nav nav-second-level collapse\""))>
+                            <li>
+                                <a href="~/Remocao" @(submenu == "GerarLista" ? "class=active-menu" : "")>Gerar lista</a>
+                            </li>
+                            <li>
+                                <a href="~/Remocao/Historico" @(submenu == "HistoricoRemocao" ? "class=active-menu" : "")>Histórico</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="~/Permuta" @(menu == "Permutas" ? "class=active-menu" : "")>
+                            <i class="fa fa-compress fa-3x"></i> Permutas
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/Unidade" @(menu == "Unidades" ? "class=active-menu" : "")>
+                            <i class="fa fa-graduation-cap fa-3x"></i> Unidades
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/Faq" @(menu == "FAQ" ? "class=active-menu" : "")>
+                            <i class="fa fa-life-saver fa-3x"></i> Perguntas e Respostas
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/FaleConosco" @(menu == "FaleConosco" ? "class=active-menu" : "")>
+                            <i class="fa fa-inbox fa-3x"></i> Fale Conosco
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/Sobre" @(menu == "Sobre" ? "class=active-menu" : "")>
+                            <i class="fa fa-info-circle fa-3x"></i> Sobre
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <div id="page-inner">
+                @if (ViewBag.HidePageHeader == null)
+                {
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2>@ViewBag.PageTitle</h2>
+                            <h5>@Html.Raw(ViewBag.PageDescription)</h5>
+
+                        </div>
+                    </div>
+                <!-- /. ROW  -->
+                    <hr />
+                }
+                <div>
+                    @RenderBody()
+                </div>
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <div class="modal-loading">
+        <div class="center-div">
+            <i class="fa fa-5x fa-spinner fa-spin"></i>
+        </div>
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <script src="~/assets/js/jquery-ui.min.js"></script>
+    <script src="~/assets/js/jquery.mask.min.js"></script>
+    <script src="~/assets/js/bootstrap.min.js"></script>
+    <script src="~/assets/js/jquery.metisMenu.js"></script>
+    <script src="~/assets/js/morris/morris.js"></script>
+    <script src="~/assets/js/custom.js"></script>
+</body>
+</html>

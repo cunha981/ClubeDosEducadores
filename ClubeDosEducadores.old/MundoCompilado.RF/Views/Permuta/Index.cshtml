@@ -1,0 +1,244 @@
+﻿@model ViewModel.PermutaVMs.PermutaIndexVM
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Permutas";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    ViewBag.Menu = "Permutas";
+    ViewBag.PageTitle = "Mural de Permutas";
+    ViewBag.PageDescription = "Aqui você encontra todas as publicações de permuta abertas para o seu cargo.";
+    ViewModel.Filters.PermutaListFilter filter = ViewBag.Filter;
+}
+<link href="~/assets/css/bootstrap-multiselect.css" rel="stylesheet" />
+<div>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header only-mobile">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse-permuta" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand white" href="#">Filtro</a>
+            </div>
+            <div class="only-desk nav navbar-nav navbar-form m-t-2">
+                <i class="fa fa-question-circle" data-toggle="tooltip" title="Selecione as DREs e Categorias de Unidades para filtrar!"></i>
+                <strong>Filtro:</strong>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-navbar-collapse-permuta">
+                <form action="~/Permuta" id="filter-form">
+                    <div class="nav navbar-nav navbar-form">
+                        <select class="form-control" multiple="multiple" name="Regioes" id="Regioes">
+                            @foreach (var option in (IEnumerable<ViewModel.RegiaoUnidadeVMs.RegiaoUnidadeOptionVM>)ViewBag.RegiaoOptions)
+                            {
+                                <option value="@option.Id" @(!filter.Regioes.Any() || filter.Regioes.Any(a => a == option.Id) ? "selected=selected" : "")>@option.Regiao</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="nav navbar-nav navbar-form">
+                        <select class="form-control" multiple="multiple" name="Tipos" id="Tipos">
+                            @foreach (var option in (IEnumerable<ViewModel.TipoUnidadeVMs.TipoUnidadeOptionVM>)ViewBag.TipoOptions)
+                            {
+                                <option value="@option.Id" @(!filter.Tipos.Any() || filter.Tipos.Any(a => a == option.Id) ? "selected=selected" : "")>@option.Tipo</option>
+                            }
+                        </select>
+                    </div>
+                </form>
+                <div class="nav navbar-nav navbar-form navbar-right" data-toggle="tooltip" title="Clique aqui para Visualizar, Criar ou Alterar sua proposta de Permuta">
+                    <button class="btn btn-default" data-toggle="modal" data-target="#permutaModal">Minha permuta</button>
+                </div>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+</div>
+@if (Model.Permutas.PageCount > 0)
+{
+    <div class="content">
+        @foreach (var permuta in Model.Permutas)
+        {
+            <div class="panel panel-primary pointer proposta-list" id="@permuta.Id">
+                <div class="panel-heading">
+                    <span class="panel-title">
+                        <span>@permuta.Regiao</span>
+                        <span> - </span>
+                        <span>@permuta.Unidade</span>
+                    </span>
+                    <span class="pull-right">Publicação: @permuta.DtPublicacao.ToString("dd/MM/yyyy")</span>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="panel-body">
+                    <div>
+                        <label>
+                            Informações sobre a vaga:
+                        </label>
+                        <div>
+                            <span>
+                                @permuta.ObservacaoFuncionario
+                            </span>
+                        </div>
+                    </div>
+                    <hr />
+                    <div>
+                        <label>
+                            Informações sobre a vaga desejada:
+                        </label>
+                        <div>
+                            <span>
+                                @permuta.ObservacaoPermuta
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <div class="btn btn-default pull-right">
+                        <i class="fa fa-search"></i>
+                        <span>Visualizar Proposta</span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="clearfix"></div>
+    <div class="pull-right bold">
+        <strong>Página @(Model.Permutas.PageCount < Model.Permutas.PageNumber ? 0 : Model.Permutas.PageNumber) de @Model.Permutas.PageCount</strong>
+    </div>
+    <div class="center-div-h">
+        @Html.PagedListPager(Model.Permutas, page => Url.Action("Index", new { Page = page })
+            + "&" + string.Join("&", filter.Tipos.Select(a => "tipos=" + a))
+            + "&" + string.Join("&", filter.Tipos.Select(a => "regioes=" + a)))
+    </div>
+}
+else
+{
+    <div class="center-div-h">
+        <h4 class="text-danger">Não encontramos propostas para sua DRE e Categoria de Unidade.</h4>
+    </div>
+}
+<div class="modal fade" id="permutaModal" tabindex="-1" role="dialog" aria-labelledby="permutaModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Proposta de Permuta</h4>
+            </div>
+            @if (Model.Permuta == null || Model.Permuta.Id == 0)
+            {
+            <div class="modal-body">
+                <center>
+                    <p class="text-danger bold f-s-18">Você ainda não publicou nenhuma proposta de Permuta!</p>
+                    <a href="~/Permuta/Self" class="btn btn-info" data-toggle="tooltip" title="Clique aqui para criar uma proposta de Permuta">
+                        <h5>Criar Proposta</h5>
+                    </a>
+                </center>
+            </div>
+            }
+            else
+            {
+            <div class="modal-body" style="height: 400px; overflow-y: scroll;">
+                <div>
+                    <label>
+                        Informações sobre a sua vaga:
+                    </label>
+                    <div>
+                        <span>
+                            @Model.Permuta.ObservacaoFuncionario
+                        </span>
+                    </div>
+                </div>
+                <hr />
+                <div>
+                    <label>
+                        Informações sobre a vaga desejada:
+                    </label>
+                    <div>
+                        <span>
+                            @Model.Permuta.ObservacaoFuncionario
+                        </span>
+                    </div>
+                </div>
+                <hr />
+                <div class="clearfix"></div>
+                <div>
+                    <label>Regiões:</label>
+                    <div>
+                        <div class="col-md-4">
+                            <ul>
+                                @foreach (var regiao in Model.Permuta.Regioes.Take(5))
+                                    {
+                                    <li>@regiao</li>
+                                    }
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <ul>
+                                @foreach (var regiao in Model.Permuta.Regioes.Skip(5).Take(5))
+                                    {
+                                    <li>@regiao</li>
+                                    }
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <ul>
+                                @foreach (var regiao in Model.Permuta.Regioes.Skip(10))
+                                    {
+                                    <li>@regiao</li>
+                                    }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <hr />
+                <div>
+                    <label>Categorias:</label>
+                    <div>
+                        <div class="">
+                            <ul>
+                                @foreach (var tipo in Model.Permuta.TiposUnidade)
+                                    {
+                                    <li>@tipo</li>
+                                    }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                <a href="~/Permuta/Self" class="btn btn-primary">Editar Proposta</a>
+            </div>
+            }
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="propostaModal" tabindex="-1" role="dialog" aria-labelledby="propostaModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Proposta de Permuta</h4>
+            </div>
+            <div class="m-t-2 col-xs-12" style="height: 400px;">
+                <iframe class="border-0 full-width" height="400" id="proposta-iframe"></iframe>
+                <div id="permuta-modal-loading" style="padding-top: 150px;">
+                    <center>
+                        <i class="fa fa-spinner fa-spin fa-3x"></i>
+                        <div>
+                            <label>
+                                Carregando proposta...
+                            </label>
+                        </div>
+                    </center>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<script src="~/assets/js/bootstrap-multiselect.js"></script>
+<script src="~/assets/js/domains/permuta-list.js"></script>

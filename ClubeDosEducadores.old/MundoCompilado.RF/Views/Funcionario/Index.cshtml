@@ -1,0 +1,228 @@
+﻿@model ViewModel.FuncionarioVMs.FuncionarioEditVM
+@using Model.Enums
+@{
+    ViewBag.Title = "Meus Dados";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    ViewBag.Menu = "MeusDados";
+    ViewBag.PageTitle = "Meus Dados";
+    ViewBag.PageDescription = "Atualize seus dados cadastrais";
+}
+<link href="~/assets/css/typeaheadjs.css" rel="stylesheet" />
+@Html.ShowAlert()
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.Id)
+        <div class="form-group col-md-6">
+            <div class="p-x-1">
+                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control", placeholder = "Nome completo" } })
+                @Html.BootstrapValidationMessageFor(model => model.Nome)
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <div class="p-x-1">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "E-mail" } })
+                @Html.BootstrapValidationMessageFor(model => model.Email)
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <div class="p-x-1">
+                @Html.EditorFor(model => model.Telefone, new { htmlAttributes = new { @class = "form-control", placeholder = "Telefone", mask = "tel" } })
+                @Html.BootstrapValidationMessageFor(model => model.Telefone)
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <div class="p-x-1">
+                @Html.EditorFor(model => model.Celular, new { htmlAttributes = new { @class = "form-control", placeholder = "Celular", mask = "tel" } })
+                @Html.BootstrapValidationMessageFor(model => model.Celular)
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="fake-legend">
+            <span>Dados Profissionais</span>
+        </div>
+
+        <div class="form-group col-md-5">
+            <div class="p-x-1">
+                <label class="control-label" for="CargoId">Cargo</label>
+                @Html.DropDownListFor(a => a.CargoId, (SelectList)ViewBag.Cargos, "Cargo", new { @class = "form-control" })
+                @Html.BootstrapValidationMessageFor(model => model.CargoId)
+            </div>
+        </div>
+
+        <div class="form-group col-md-6">
+            <div class="p-x-1">
+                <label class="control-label" for="Unidade">Local de trabalho</label>
+                <div class="scrollable-dropdown-menu">
+                    <div class="">
+                        <input type="text" class="form-control typeahead" placeholder="Digite parte do nome da unidade para pesquisar e selecionar" name="Unidade" id="Unidade" />
+                    </div>
+
+                    @Html.BootstrapValidationMessageFor(model => model.UnidadeTrabalhoId)
+                    @Html.HiddenFor(a => a.UnidadeTrabalhoId)
+                </div>
+            </div>
+        </div>
+        @if (Model.UnidadeTrabalhoId.HasValue)
+        {
+            <div class="col-md-1 m-t-3">
+                <i class="fa fa-star fa-2x yellow pointer" data-toggle="tooltip" title="Avaliar Unidade" id="btn-avaliar"></i>
+            </div>
+        }
+
+        <div class="clearfix"></div>
+
+        <div class="fake-legend">
+            <span>Endereço</span>
+        </div>
+        <div class="form-group col-md-4">
+            <div class="p-x-1">
+                <label class="control-label" for="Cep">Cep</label>
+                <div>
+                    @Html.EditorFor(model => model.Cep, new { htmlAttributes = new { @class = "form-control", data_mask = "00000-000" } })
+                    @Html.BootstrapValidationMessageFor(model => model.Cep)
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <div>
+                <label class="control-label" for="Logradouro">Logradouro</label>
+                <div>
+                    @Html.EditorFor(model => model.Logradouro, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.BootstrapValidationMessageFor(model => model.Logradouro)
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-md-2">
+            <div class="p-x-1">
+                <label class="control-label" for="Numero">Número</label>
+                <div>
+                    @Html.EditorFor(model => model.Numero, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.BootstrapValidationMessageFor(model => model.Numero)
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group col-md-4">
+            <div class="p-x-1">
+                <label class="control-label" for="Bairro">Bairro</label>
+                <div>
+                    @Html.EditorFor(model => model.Bairro, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.BootstrapValidationMessageFor(model => model.Bairro)
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-md-2">
+            <div class="p-x-1">
+                <label class="control-label" for="Uf">Uf</label>
+                <div>
+                    @Html.SelectStateFor(a => a.Uf)
+                    @Html.BootstrapValidationMessageFor(model => model.Uf)
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-md-3">
+            <div>
+                <label class="control-label" for="Cidade">Cidade</label>
+                <div>
+                    @Html.EditorFor(model => model.Cidade, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Cidade)
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <div>
+                <label class="control-label" for="Complemento">Complemento</label>
+                <div>
+                    @Html.EditorFor(model => model.Complemento, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.BootstrapValidationMessageFor(model => model.Complemento)
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <div id="map" style="height: 200px;"></div>
+        @Html.HiddenFor(a => a.Latitude)
+        @Html.HiddenFor(a => a.Longitude)
+        <div class="col-md-offset-4 col-md-4 m-t-2">
+            @Html.BootstrapValidationMessageFor(a => a.Latitude)
+        </div>
+        <div class="fake-legend">
+            <span>Alterar Senha</span>
+        </div>
+        <div class="row col-md-12">
+            <div class="form-group col-md-6">
+                <div class="col-md-offset-4 col-md-8">
+                    @Html.PasswordFor(model => model.Senha, new { value = Model.Senha, @class = "form-control", placeholder = "Senha" })
+                    @Html.BootstrapValidationMessageFor(model => model.Senha)
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <div class="col-md-8">
+                    @Html.PasswordFor(model => model.ReSenha, new { value = Model.Senha, @class = "form-control", placeholder = "Digite a senha novamente" })
+                    @Html.BootstrapValidationMessageFor(model => model.ReSenha)
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div>
+            <div class="fake-legend">
+                <span>Preferências</span>
+            </div>
+            <div>
+                <div class="col-md-8">
+                    <div class="material-switch col-md-2">
+                        <input id="SendPermutaCheckBox" link-field="SendEmailPermuta" type="checkbox" @(Model.SendEmailPermuta ? "checked" : "") />
+                        <label for="SendPermutaCheckBox" class="label-success checkbox-switch"></label>
+                    </div>
+                    <span class="bold">Receber e-mail quando alguém cadastrar uma permuta de meu interesse</span>
+                    @Html.HiddenFor(a => a.SendEmailPermuta)
+                    @Html.BootstrapValidationMessageFor(model => model.SendEmailPermuta)
+                </div>
+
+                @foreach (var tipoEvento in EnumExtensions.GetEnumerable<TipoEventoEnum>().Where(a => a != TipoEventoEnum.Indefinido))
+                {
+                    var value = Model.Notificacoes.SingleOrDefault(a => a == tipoEvento);
+                    <div class="col-md-8 m-t-2">
+                        <div class="material-switch col-md-2">
+                            <input id="@tipoEvento.ToString()CheckBox" link-field="@tipoEvento.ToString()" type="checkbox" @(value != TipoEventoEnum.Indefinido ? "checked" : "") />
+                            <label for="@tipoEvento.ToString()CheckBox" class="label-success checkbox-switch" check-val="@tipoEvento.ToString()" uncheck-val="@TipoEventoEnum.Indefinido"></label>
+                        </div>
+                        <span class="bold">Receber e-mail sobre @tipoEvento.GetDescription()</span>
+                        @Html.Hidden("Notificacoes[]", value, new { @id = tipoEvento.ToString() })
+                        @Html.BootstrapValidationMessage(@tipoEvento.ToString())
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <hr />
+        <div class="form-group">
+            <div class="col-md-offset-11 col-md-1">
+                <input type="submit" value="Salvar" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="avaliacaoModalLabel" id="avaliacaoModal">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="avaliacaoModalLabel"></h4>
+                </div>
+                <div class="col-xs-12">
+                    <iframe class="border-0 full-width" id="avaliacao-iframe" height="370"></iframe>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+}
+<script src="~/assets/js/typeahead.js/typeahead.jquery.min.js"></script>
+<script src="~/assets/js/domains/funcionarioEdit.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqs0t9Z-3RLmsPc8uoWrMEOP2PVMICHA4&signed_in=true&callback=initMap"></script>

@@ -1,0 +1,44 @@
+OBJETIVO PRINCIPAL:
+	Criar uma ferramenta que auxilie o funcionário da educação a criar sua lista de indicações para remoção
+
+OBJETIVO INDIRETO
+	Promover conteúdo de interesse (notícias e informação) para atrair pessoas
+
+FUNCIONALIDADES
+	- Consulta de unidades
+	- Alteração de cadastro
+	- Criação de lista de indicação para remoção
+	- Permutas
+	- FAQ
+
+FORMAS DE PROSPERAR, DIVULGAR E CRESCER
+	- Investir em propagandas no facebook
+	- Enviar e-mails marketing (arrumar base de e-mails)
+	- Parcerias com sindicatos ou troca de interesses com eles
+	- Entrar e divulgar em todos os grupos possíveis de funcionários da educação
+	- boca a boca
+
+FAZER: 
+	Avisos - Apresentar no site em N telas (Concurso, cursos, notícias, avisos, lembretes, etc.)
+	Criação de lista para posse - (Analisar, pois normalmente a pessoa chega no conae e ve as vagas no mural, talvez o ideial é de forma rápida apresentar ao novo funcionário a melhor opção)
+	[Pago] Permuta - Envio de e-mail para todos que aceitam receber sobre a permuta de determinada pessoa 
+	Enquetes e assinaturas - para interesses dos funcionários que ao final será levado ao conhecimento dos sindicatos
+	Divulgação de sindicatos - (suas brigas, conquistas de cada um e indicação em aproximidade dos que possuem mais filiados [Talvez assim ganhamos o interesse dos sindicatos])
+	Pagseguro - Integração
+	Layout Remoção - Verificar documentos enviados pela Amanda e ver viabilidade de impressão da lista ser parecida (..\Arquivos\Remoção)
+	Envio de e-mail - Trocar host de envio pois Zoho é limitado a 250 por dia (MailGun ou Amazon?)
+	Avaliação de unidade - Dar opção da pessoa avaliar uma unidade quando estiver consultando as avaliações dela (pois o pessoal não está entendendo que deve colocar onde trabalha - deixar isso claro também pois senão ngm informa onde trabalha)
+	
+
+
+LINKS
+	(Servidores) - http://dados.prefeitura.sp.gov.br/dataset/servidores-ativos-da-prefeitura
+	(Vencimentos) - http://www.sinpeem.com.br/materias.php?cd_secao=49&codant=&friurl=_-Tabelas-de-vencimentos-
+	(SendGrid) - https://sendgrid.com/ 
+	(AOEIESO) - http://www.apeoesp.org.br/
+	(Evolução Funcional) - http://portal.sme.prefeitura.sp.gov.br/Main/Noticia/Visualizar/PortalSMESP/Manual--Evolucao-Funcional--Quadro-do-Magisterio-e-Quadro-de-Apoio
+	(MailGun) - http://www.mailgun.com/pricing
+
+
+Parcerias
+	- Cursinhos preparatórios para concursos da SME

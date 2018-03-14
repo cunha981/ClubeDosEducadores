@@ -1,0 +1,145 @@
+Https Clube
+
+
+*************************************************************************************************************************************
+https://developers.google.com/maps/documentation/distance-matrix/usage-limits?hl=pt-br
+
+chave google api cobrnaça clube
+AIzaSyAidxwe04OUlUSEM8us3o9xGkSKgDP9XIk
+
+Usuários da API padrão:
+
+2.500 elementos gratuitos por dia, calculados como a soma das consultas do lado do cliente e do lado do servidor.
+Máximo de 25 origens ou 25 destinos por solicitação.
+100 elementos por solicitação.
+100 elementos por segundo, calculados como a soma das consultas do lado do cliente e do lado do servidor.
+Ative a cobrança de pagamento conforme o uso para ter acesso a cotas maiores:
+
+US $0,50 / 1000 elementos adicionais, somando até 100.000 elementos diários.
+
+https://developers.google.com/maps/documentation/distance-matrix/intro?hl=pt-br
+
+https://maps.googleapis.com/maps/api/distancematrix/json?destinations=-23.6027572,-46.5054033|-23.5473908,-46.6862803&key=AIzaSyAidxwe04OUlUSEM8us3o9xGkSKgDP9XIk&origins=-23.5371864,-46.4087689
+{
+   "destination_addresses" : [
+      "R. Mario Tarengui, 105-109 - Conj. Hab. Teotonio Vilela, São Paulo - SP, 03928-040, Brasil",
+      "Rua Paracuê, 1-47 - Sumaré, São Paulo - SP, 01257-050, Brasil"
+   ],
+   "origin_addresses" : [ "R. Andes, 610 - Guaianazes, São Paulo - SP, Brasil" ],
+   "rows" : [
+      {
+         "elements" : [
+            {
+               "distance" : {
+                  "text" : "16,1 km",
+                  "value" : 16121
+               },
+               "duration" : {
+                  "text" : "44 minutos",
+                  "value" : 2611
+               },
+               "status" : "OK"
+            },
+            {
+               "distance" : {
+                  "text" : "43,4 km",
+                  "value" : 43362
+               },
+               "duration" : {
+                  "text" : "59 minutos",
+                  "value" : 3519
+               },
+               "status" : "OK"
+            }
+         ]
+      }
+   ],
+   "status" : "OK"
+}
+*************************************************************************************************************************************
+
+Salvar as listas enviadas incluindo cep de origem ou coordenadas. Pois caso a api da Google não responda 
+podemos via lógica procurar a lista de coordenadas mais próximas e entregar ela como provisória ou oficial.
+
+ALEM DE PDF E EXCEL FAZER MODELO RESUMIDO TBM - MODELO IMPRESSÃO 
+    POIS TEM PESSOAS QUE VAI IMPRIMIR E NÃO CONSEGUE PELO TAMANHO OU FORMATO DO ARQUIVO
+
+
+
+1 - Criar algoritmo capaz de extrair as vagas apenas informando 
+data, página início, página fim e o tipo da lista a ser extraída
+    1.1 - O algoritmo navegará entre as páginas em PDF e irá extrair o texto
+    1.2 - Com o texto em mãos, o algoritmo deverá extrair as vagas
+        1.2.1 - O próprio algoritmo deverá ser capaz de resolver as não conformidades (Ex.: Não encontrou a escola)
+        1.2.2 - Quando não for capaz de resolver
+            1.2.2.1 - Criar uma lista de pendência
+            1.2.2.2 - Alertar o administrador
+            1.2.2.3 - Permitir após resolver as pendências, processá-las como no fluxo normal para salvar na base de dados
+    1.3 - Após extraído deverá ser padronizado na estrutura do sistema as vagas
+    1.4 - Após padronizado deverá ser validado com o conteúdo extraído a conformidade de forma sistêmica
+    1.5 - Após validado pelo sistema, deverá apresentar 20 vagas ao administrador para que o mesmo valide
+    1.6 - Após o aceite do Administrador/Validador deverá ser registrada as vagas na base de dados
+
+2 - O sistema precisa permitir que o funcionário possa baixar sua lista nos formatos excel e pdf
+
+3 - Criar uma página de fácil e rápido acesso de forma pública
+    3.1 - Criar gráfico sobre as estatisticas de vagas por ano (tipos de unidade, anos, precária, inicial, potêncial...)
+
+4 - Ofertar serviço de Coach, onde uma pessoa ajuda a indicar as melhores opções
+
+5 - Criar página para solicitar lista de remoção
+    5.1 - Solicitar os dados do funcionário 
+        5.1.1 - Nome
+        5.1.2 - CPF
+        5.1.3 - Data de nascimento
+        5.1.4 - Cargo
+        5.1.5 - E-mail
+        5.1.6 - Endereço
+        5.1.7 - Onde trabalha hoje? (Não obrigatório)
+        5.1.8 - comprovante de pagamento (não obrigatório)
+        5.1.9 - Botão para confirmar na pagseguro se está pago
+    5.2 - Caso o cpf já esteja cadastrado:
+        5.2.1 - o sistema deverá solicitar uma segunda informação da pessoa para confirmar (não usar senha, pois as pessoas esquecem, aqui por exemplo pode perguntar o dia do nascimento, o mês do nascimento, tudo de forma aleatória)
+    5.3 - Durante o cadastro ou consulta do cadastro, exibir campo para anexar comprovante de pagamento e botão de pagseguro (5.1.9)
+    5.4 - Caso o administrador tenha validado o comprovante de pagamento ou a pagseguro tenha dado ok para o sistema
+        5.4.1 - O sistema deverá liberar o download das listas (se já disponível)
+        5.4.2 - O sistema só deverá liberar o download se o comprovante de pagamento for do ano em questão
+        5.4.3 - Após virar o ano o sistema não deverá permitir fazer o download da lista do ano passado
+        5.4.4 - Após virar o ano o sistema não deverá permitir fazer o download da lista do ano atual se o pagamento não for do ano
+    
+6 - Utilizar API do google para exibir distância correta e utilizando transporte público (procurar alternativas)
+    6.1 - Uma opção talvez seja através de javascript obter as distâncias e enviar para o backend montar a lista
+    6.2 - Tornando então a consulta por IP do usuário
+    6.3 - Desta forma teria que salvar a lista da pessoa no banco ou em arquivo no servidor para não perder essa informação
+
+7 - Criar página que exiba as informações das escolas
+    7.1 - Pensar se é possível a página ser pública
+    7.2 - Não permitir que APIS extraiam os dados da página
+
+8 - Criar página onde os funcionários possam colocam suas reivindicações para que o sindicato possa consultar
+    8.1 - Uma estratégia de fazer o sindicato chegar ao funcionário
+    8.2 - Uma estratégia para o sindicato se aproximar do clube
+
+9 - Procurar parcerias com faculdades para oferecer descontos
+
+10 - Procurar parcerias com sindicatos
+    10.1 - Filiados talvez possam ter desconto na lista ou até de graça dependendo da parceria
+
+11 - Criar página geradora de estatisticas (vagas, comparativo de vagas, seguindo a primeira ideia de gráficos acima)
+    11.1 - Gera as estatisticas em imagem com marca d' agua
+    11.2 - Para ser publicado em grupos e afins sem perder a credibilidade e a página ser pública
+    11.3 - Assim pessoas comuns podem pegar as imagens e publicar nos grupos
+    11.4 - estratégia para atrair mais funcionários
+
+
+Salvar listas emitidas para efetuar análises no futuro?
+Tabela de pagantes? (funcionario x banco x data x liberado x dataLiberacao)
+
+COLOCAR TEMPO E DISTANCIA CORRETO NA PLANILHA PRA QUEBRAR CONCORRENCIA
+
+https://gabeworks.wordpress.com/2012/10/11/extrair-texto-de-um-pdf-em-c/
+
+
+TOMAR CUIDADO PARA N DEIXAR ALTERAR ENDEREÇO TODA HORA, GERANDO ASSIM LISTA PARA OS OUTROS
+    NA PRIMEIRA VEZ NÃO BLOQUEAR
+    NA SEGUNDA DEIXAR ALTERAR, PORÉM DEIXAR COMO PENDENTE, TENTO QUE ANEXAR COMPROVANTE DE RESIDÊNCIA PARA SER APROVADO (ENVIAR E-MAIL QUANDO APROVAR)

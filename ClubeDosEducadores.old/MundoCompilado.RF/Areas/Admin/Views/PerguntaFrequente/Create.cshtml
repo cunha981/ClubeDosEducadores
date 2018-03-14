@@ -1,0 +1,59 @@
+﻿@model ViewModel.PerguntaFrequenteVMs.PerguntaFrequenteVM
+
+@{
+    ViewBag.Title = "Nova FAQ";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+<link href="~/assets/js/trumbowyg/ui/trumbowyg.min.css" rel="stylesheet" />
+<h2>Nova FAQ</h2>
+<hr />
+@Html.ShowAlert()
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal col-md-11">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Pergunta">Pergunta</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Pergunta, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.BootstrapValidationMessageFor(model => model.Pergunta)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Resposta">Resposta</label>
+            <div class="col-md-10">
+                <textarea class="form-control" rows="5" name="Resposta" id="Resposta" >@(Model != null ? Model.Resposta : "")</textarea>
+                @Html.BootstrapValidationMessageFor(model => model.Resposta)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Tags">Tags</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Tags, new { htmlAttributes = new { @class = "form-control", placeholder = "Ex: salario,salário,remuneracao,remuneração" } })
+                @Html.BootstrapValidationMessageFor(model => model.Tags)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Salvar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+<div class="clearfix"></div>
+<div>
+    @Html.ActionLink("Voltar para FAQs", "Index")
+</div>
+<script src="~/assets/js/trumbowyg/trumbowyg.min.js"></script>
+<script>
+    $(function () {
+        $('textarea').trumbowyg({
+            semantic: false
+        });
+    })
+</script>

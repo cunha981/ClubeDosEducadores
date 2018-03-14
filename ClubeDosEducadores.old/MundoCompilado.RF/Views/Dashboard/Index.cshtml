@@ -1,0 +1,196 @@
+﻿@model ViewModel.DashboardVMs.DashboardVM
+@{
+    ViewBag.Title = "Início";
+    ViewBag.Menu = "Inicio";
+    ViewBag.HidePageHeader = true;
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+
+    IEnumerable<ViewModel.EventoVMs.EventoListVM> noticias = ViewBag.Noticias;
+    IEnumerable<ViewModel.EventoVMs.EventoListVM> cursos = ViewBag.Cursos;
+
+}
+<div id="links-uteis">
+    <a class="col-md-4 col-sm-6 col-xs-6 deco-none pointer" href="http://www.docidadesp.imprensaoficial.com.br/" target="_blank">
+        <div class="panel panel-back">
+            <div class="p-y-1 p-x-1">
+                <span class="fa-2x orange">
+                    <i class="fa fa-newspaper-o"></i>
+                </span>
+                <span class="bold m-x-2 f-s-18">Diário Oficial</span>
+            </div>
+        </div>
+    </a>
+    <a class="col-md-4 col-sm-6 col-xs-6 deco-none pointer" href="http://portal.sme.prefeitura.sp.gov.br/" target="_blank">
+        <div class="panel panel-back">
+            <div class="p-y-1 p-x-1">
+                <span class="fa-2x red">
+                    <i class="fa fa-university"></i>
+                </span>
+                <span class="bold m-x-2 f-s-18">Portal SME</span>
+            </div>
+        </div>
+    </a>
+    <a class="col-md-4 col-sm-6 col-xs-6 deco-none pointer" href="http://www.areaprivada.prefeitura.sp.gov.br/PortalPMSP/PortalPMSP/Portal/Menu.tp" target="_blank">
+        <div class="panel panel-back">
+            <div class="p-y-1 p-x-1">
+                <span class="fa-2x gray">
+                    <i class="fa fa-user"></i>
+                </span>
+                <span class="bold m-x-2 f-s-18">Área Privada</span>
+            </div>
+        </div>
+    </a>
+</div>
+<div class="clearfix"></div>
+<div id="eventos">
+    <div class="row">
+        <div class="col-md-6 col-sm-12 col-xs-12">
+            <div class="panel panel-default chat-boder chat-panel-head">
+                <div class="panel-heading">
+                    <i class="fa fa-newspaper-o fa-fw"></i>
+                    Últimas Notícias
+                </div>
+                <div class="panel-body news-panel">
+                    <ul class="chat-box">
+                        @foreach (var evento in noticias)
+                        {
+
+                        <li class="left clearfix">
+                            <a href="~/Evento/Get/@evento.Id">
+                                <div class="">
+                                    <strong>@evento.Titulo</strong>
+                                    <div>
+                                        <span class="text-muted">
+                                            @evento.Resumo.CropWholeWords(100, "...")
+                                        </span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+
+                        }
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                    <a class="btn btn-default pull-right" href="~/Evento/Index/0">
+                        <span>Ver mais</span>
+                        <span class="fa fa-angle-double-right"></span>
+                    </a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12 col-xs-12">
+            <div class="panel panel-default chat-boder chat-panel-head">
+                <div class="panel-heading">
+                    <i class="fa fa-bell-o fa-fw"></i>
+                    Últimos Cursos (Evolução Funcional)
+                </div>
+
+                <div class="panel-body news-panel">
+                    <ul class="chat-box">
+                        @foreach (var evento in cursos)
+                        {
+
+                            <li class="left clearfix">
+                                <a href="~/Evento/Get/@evento.Id">
+                                    <div class="">
+                                        <strong>@evento.Titulo</strong>
+                                        <div>
+                                            <span class="text-muted">
+                                                @evento.Resumo.CropWholeWords(100, "...")
+                                            </span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+
+                        }
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                    <a class="btn btn-default pull-right" href="~/Evento/Index/Curso">
+                        <span>Ver mais</span>
+                        <span class="fa fa-angle-double-right"></span>
+                    </a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="panel panel-warning permutas" style="height: 400px; overflow-y: auto;">
+    <div class="panel-heading pointer">
+        <a class="deco-none" href="~/Permuta">
+            <div class="panel-title bold">
+                <i class="fa fa-compress"></i>
+                Últimas propostas de permuta cadastradas
+            </div>
+        </a>
+    </div>
+    <div class="panel-body">
+        @foreach (var permuta in Model.Permutas)
+        {
+        <div class="proposta-list pointer" id="@permuta.Id">
+            <div class="fake-legend m-t-1 m-b-1">
+                <span class="text-small">
+                    <span>@permuta.Regiao</span>
+                    <span>-</span>
+                    <span>@permuta.Unidade</span>
+                    <span class="pull-right">Publicação: @permuta.DtPublicacao.ToString("dd/MM/yyyy")</span>
+                </span>
+            </div>
+            <div class="text-small">
+                <span class="bold">Sobre a vaga:</span>
+                <span>
+                    @permuta.ObservacaoFuncionario
+                </span>
+            </div>
+            <div>
+                <span class="bold">
+                    Sobre a vaga desejada:
+                </span>
+                <span>
+                    @permuta.ObservacaoPermuta
+                </span>
+            </div>
+            <div>
+                <div class="btn btn-primary btn-sm pull-right">
+                    <i class="fa fa-search"></i>
+                    <span>Visualizar Proposta</span>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <hr />
+        </div>
+        }
+    </div>
+</div>
+
+<div class="modais">
+    <div class="modal fade" id="propostaModal" tabindex="-1" role="dialog" aria-labelledby="propostaModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Proposta de Permuta</h4>
+                </div>
+                <div class="m-t-2 col-xs-12" style="height: 400px;">
+                    <iframe class="border-0 full-width" height="400" id="proposta-iframe"></iframe>
+                    <div id="permuta-modal-loading" style="padding-top: 150px;">
+                        <center>
+                            <i class="fa fa-spinner fa-spin fa-3x"></i>
+                            <div>
+                                <label>
+                                    Carregando proposta...
+                                </label>
+                            </div>
+                        </center>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/assets/js/domains/dashboard.js"></script>

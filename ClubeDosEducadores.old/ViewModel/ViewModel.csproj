@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C84C6319-7391-42C0-BD5A-9E898D865A7F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ViewModel</RootNamespace>
+    <AssemblyName>ViewModel</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=4.1.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.1.1\lib\net45\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FluentValidation, Version=6.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.6.2.1.0\lib\Net45\FluentValidation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FluentValidation.Mvc, Version=6.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.MVC5.6.2.1.0\lib\Net45\FluentValidation.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Omu.ValueInjecter, Version=3.1.1.0, Culture=neutral, PublicKeyToken=c7694541b0ac80e4, processorArchitecture=MSIL">
+      <HintPath>..\packages\valueinjecter.3.1.1.3\lib\net40\Omu.ValueInjecter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Linq.Dynamic, Version=1.0.5840.25917, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.Dynamic.1.0.6\lib\net40\System.Linq.Dynamic.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdminManagerVMs\LabelValueVM.cs" />
+    <Compile Include="AdminManagerVMs\ManageVM.cs" />
+    <Compile Include="AdminManagerVMs\UsuarioManageVM.cs" />
+    <Compile Include="AutofacValidatorFactory.cs" />
+    <Compile Include="ConfigModule.cs" />
+    <Compile Include="DashboardVMs\DashboardViewModelExtensions.cs" />
+    <Compile Include="DashboardVMs\DashboardVM.cs" />
+    <Compile Include="EventoVMs\EventoEditValidator.cs" />
+    <Compile Include="EventoVMs\EventoEditVM.cs" />
+    <Compile Include="EventoVMs\EventoListVM.cs" />
+    <Compile Include="EventoVMs\EventoViewModelExtensions.cs" />
+    <Compile Include="FaleConoscoVMs\FaleConoscoPortfolioViewModelValidator.cs" />
+    <Compile Include="FaleConoscoVMs\FaleConoscoPortfolioVM.cs" />
+    <Compile Include="FaleConoscoVMs\FaleConoscoViewModelValidator.cs" />
+    <Compile Include="FaleConoscoVMs\FaleConoscoVM.cs" />
+    <Compile Include="Filters\EventoListFilter.cs" />
+    <Compile Include="Filters\PermutaListFilter.cs" />
+    <Compile Include="Filters\RemocaoListFilter.cs" />
+    <Compile Include="Filters\UnidadeListFilter.cs" />
+    <Compile Include="FuncionarioVMs\FuncionarioControlListVM.cs" />
+    <Compile Include="FuncionarioVMs\FuncionarioEditValidator.cs" />
+    <Compile Include="FuncionarioVMs\FuncionarioEditVM.cs" />
+    <Compile Include="FuncionarioVMs\FuncionarioViewModelExtensions.cs" />
+    <Compile Include="PerguntaFrequenteVMs\PerguntaFrequenteValidator.cs" />
+    <Compile Include="PerguntaFrequenteVMs\PerguntaFrequenteViewModelExtensions.cs" />
+    <Compile Include="PerguntaFrequenteVMs\PerguntaFrequenteVM.cs" />
+    <Compile Include="PermutaVMs\PermutaEditViewModelValidator.cs" />
+    <Compile Include="PermutaVMs\PermutaEditVM.cs" />
+    <Compile Include="PermutaVMs\PermutaGetVM.cs" />
+    <Compile Include="PermutaVMs\PermutaIndexVM.cs" />
+    <Compile Include="PermutaVMs\PermutaListVM.cs" />
+    <Compile Include="PermutaVMs\PermutaRemoveViewModelValidator.cs" />
+    <Compile Include="PermutaVMs\PermutaRemoveVM.cs" />
+    <Compile Include="PermutaVMs\PermutaViewModelExtensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegiaoUnidadeVMs\RegiaoUnidadeOptionVM.cs" />
+    <Compile Include="RegiaoUnidadeVMs\RegiaoUnidadeViewModelExtensions.cs" />
+    <Compile Include="RemocaoVMs\HistoricoRemocaoListVM.cs" />
+    <Compile Include="RemocaoVMs\IndicacaoRemocaoPotencialVM.cs" />
+    <Compile Include="RemocaoVMs\IndicacaoRemocaoVM.cs" />
+    <Compile Include="RemocaoVMs\RemocaoViewModel.cs" />
+    <Compile Include="RemocaoVMs\RemocaoViewModelExtensions.cs" />
+    <Compile Include="RemocaoVMs\RemocaoViewModelValidator.cs" />
+    <Compile Include="RemocaoVMs\RemocoesViewModel.cs" />
+    <Compile Include="RemocaoVMs\RemocoesViewModelValidator.cs" />
+    <Compile Include="RemocaoVMs\VagaRemocaoVM.cs" />
+    <Compile Include="TipoUnidadeVMs\TipoUnidadeOptionVM.cs" />
+    <Compile Include="TipoUnidadeVMs\TipoUnidadeViewModelExtensions.cs" />
+    <Compile Include="UnidadeAvaliacaoVMs\UnidadeAvaliacaoListVM.cs" />
+    <Compile Include="UnidadeAvaliacaoVMs\UnidadeAvaliacaoPostValidator.cs" />
+    <Compile Include="UnidadeAvaliacaoVMs\UnidadeAvaliacaoGetVM.cs" />
+    <Compile Include="UnidadeAvaliacaoVMs\UnidadeAvaliacaoPostVM.cs" />
+    <Compile Include="UnidadeAvaliacaoVMs\UnidadeAvaliacaoViewModelExtensions.cs" />
+    <Compile Include="UnidadeVMs\UnidadeGetVM.cs" />
+    <Compile Include="UnidadeVMs\UnidadeListVM.cs" />
+    <Compile Include="UnidadeVMs\UnidadeOptionVM.cs" />
+    <Compile Include="UnidadeVMs\UnidadeVagaVM.cs" />
+    <Compile Include="UnidadeVMs\UnidadeViewModelExtensions.cs" />
+    <Compile Include="UsuarioVMs\AdminLoginValidator.cs" />
+    <Compile Include="UsuarioVMs\AdminLoginVM.cs" />
+    <Compile Include="UsuarioVMs\AdminOnline.cs" />
+    <Compile Include="UsuarioVMs\FuncionarioOnline.cs" />
+    <Compile Include="UsuarioVMs\UsuarioCadastrarValidator.cs" />
+    <Compile Include="UsuarioVMs\UsuarioCadastrarVM.cs" />
+    <Compile Include="UsuarioVMs\UsuarioLoginValidator.cs" />
+    <Compile Include="UsuarioVMs\UsuarioLoginVM.cs" />
+    <Compile Include="UsuarioVMs\UsuarioViewModelExtensions.cs" />
+    <Compile Include="ViewModelValidator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
+      <Project>{e2cb09ce-5f6c-4e16-b297-48bbd08fa3b0}</Project>
+      <Name>DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Helper\Helper.csproj">
+      <Project>{0a651e2f-1d0e-4aa4-b444-68406300db31}</Project>
+      <Name>Helper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{f055ab64-84e4-473d-a98d-1e03d8f96e28}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\PagedList.css" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

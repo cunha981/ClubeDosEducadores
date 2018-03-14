@@ -1,0 +1,39 @@
+﻿@model ViewModel.EventoVMs.EventoEditVM
+
+@{
+    var tipoEventoString = Model.TipoEvento.ToString();
+    var tipoEventoDescription = Model.TipoEvento.GetDescription();
+
+    ViewBag.Title = Model.Titulo;
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    ViewBag.Menu = "Evento";
+    ViewBag.SubMenu = tipoEventoString;
+    ViewBag.PageTitle = Model.Titulo;
+    ViewBag.PageDescription = $"<h4><strong>Quando: </strong><span>{Model.DtEvento.ToString("dd/MM/yyyy HH:mm")}</span></h4>";
+}
+
+<div>
+    <div class="row breadcrumb">
+        <div class="col-md-4 m-t-1">
+            <strong>Categoria: @tipoEventoDescription</strong>
+        </div>
+        @if (!string.IsNullOrWhiteSpace(Model.Url))
+        {
+            <div class="pull-right">
+                <a class="btn btn-default" href="@Model.Url" target="_blank">
+                    Acessar Link
+                </a>
+            </div>
+        }
+    </div>
+    <div>
+        @Html.Raw(Model.Descricao)
+    </div>
+    @if (!string.IsNullOrWhiteSpace(Model.Url))
+    {
+        <div class="m-t-3">
+            <strong>Link:</strong>
+            <a href="@Model.Url" target="_blank">@Model.Url</a>
+        </div>
+    }
+</div>

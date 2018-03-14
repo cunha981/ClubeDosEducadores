@@ -1,0 +1,94 @@
+﻿@model IEnumerable<ViewModel.FuncionarioVMs.FuncionarioControlListVM>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/assets/css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <table class="table table-responsive table-hover table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Celular)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EnderecoPreenchido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Senha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ativo)
+            </th>
+            <th>
+                <strong>Gerar Totais</strong>
+            </th>
+            <th>
+                <strong>Ini + PT</strong>
+            </th>
+            <th>
+                <strong>Precário</strong>
+            </th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Celular)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnderecoPreenchido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Senha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ativo)
+            </td>
+            @if (item.EnderecoPreenchido)
+            {
+            <td><a href="~/Restrito/Indicacao?id=@item.Id" target="_blank">Totais</a></td>
+            <td><a href="~/Restrito/IndicacaoCompleta?id=@item.Id" target="_blank">INI + PT</a></td>
+            <td><a href="~/Restrito/IndicacaoPrecario?id=@item.Id" target="_blank">Precário</a></td>
+            }
+            else
+            {
+                <td></td>
+                <td></td>
+            }
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E2CB09CE-5F6C-4E16-B297-48BBD08FA3B0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataAccess</RootNamespace>
+    <AssemblyName>DataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=4.1.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.1.1\lib\net45\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Omu.ValueInjecter, Version=3.1.1.0, Culture=neutral, PublicKeyToken=c7694541b0ac80e4, processorArchitecture=MSIL">
+      <HintPath>..\packages\valueinjecter.3.1.1.3\lib\net40\Omu.ValueInjecter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ConfigModule.cs" />
+    <Compile Include="Context.cs" />
+    <Compile Include="Mappings\CargoMapping.cs" />
+    <Compile Include="Mappings\EnderecoUnidadeMapping.cs" />
+    <Compile Include="Mappings\EventoMapping.cs" />
+    <Compile Include="Mappings\FuncionarioMapping.cs" />
+    <Compile Include="Mappings\MailTemplateMapping.cs" />
+    <Compile Include="Mappings\NoticiaMapping.cs" />
+    <Compile Include="Mappings\PerguntaFrequenteMapping.cs" />
+    <Compile Include="Mappings\PermutaMapping.cs" />
+    <Compile Include="Mappings\PermutaRegiaoUnidadeMapping.cs" />
+    <Compile Include="Mappings\PermutaTipoUnidadeMapping.cs" />
+    <Compile Include="Mappings\RegiaoUnidadeMapping.cs" />
+    <Compile Include="Mappings\RemocaoMapping.cs" />
+    <Compile Include="Mappings\TipoUnidadeMapping.cs" />
+    <Compile Include="Mappings\UnidadeAvaliacaoMapping.cs" />
+    <Compile Include="Mappings\UnidadeMapping.cs" />
+    <Compile Include="Mappings\UsuarioAtributoMapping.cs" />
+    <Compile Include="Mappings\UsuarioFuncionarioMapping.cs" />
+    <Compile Include="Mappings\UsuarioNotificacaoMapping.cs" />
+    <Compile Include="Mappings\VagaRemocaoMapping.cs" />
+    <Compile Include="Migrations\201610112350311_melhorias111016.cs" />
+    <Compile Include="Migrations\201610112350311_melhorias111016.Designer.cs">
+      <DependentUpon>201610112350311_melhorias111016.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610181336439_Vagas.cs" />
+    <Compile Include="Migrations\201610181336439_Vagas.Designer.cs">
+      <DependentUpon>201610181336439_Vagas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610182240496_ControlUserAccess.cs" />
+    <Compile Include="Migrations\201610182240496_ControlUserAccess.Designer.cs">
+      <DependentUpon>201610182240496_ControlUserAccess.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610182333095_DtAtividadeNull.cs" />
+    <Compile Include="Migrations\201610182333095_DtAtividadeNull.Designer.cs">
+      <DependentUpon>201610182333095_DtAtividadeNull.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611020126527_MailProvider.cs" />
+    <Compile Include="Migrations\201611020126527_MailProvider.Designer.cs">
+      <DependentUpon>201611020126527_MailProvider.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611032222556_dadosFuncionario.cs" />
+    <Compile Include="Migrations\201611032222556_dadosFuncionario.Designer.cs">
+      <DependentUpon>201611032222556_dadosFuncionario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611032253545_dadosFuncionario1.cs" />
+    <Compile Include="Migrations\201611032253545_dadosFuncionario1.Designer.cs">
+      <DependentUpon>201611032253545_dadosFuncionario1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612011351069_Permuta.cs" />
+    <Compile Include="Migrations\201612011351069_Permuta.Designer.cs">
+      <DependentUpon>201612011351069_Permuta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612061557394_UpdateUnidade.cs" />
+    <Compile Include="Migrations\201612061557394_UpdateUnidade.Designer.cs">
+      <DependentUpon>201612061557394_UpdateUnidade.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612071315051_UnidadeAvaliacao.cs" />
+    <Compile Include="Migrations\201612071315051_UnidadeAvaliacao.Designer.cs">
+      <DependentUpon>201612071315051_UnidadeAvaliacao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612081325242_UpdateUnidadeAvalicao.cs" />
+    <Compile Include="Migrations\201612081325242_UpdateUnidadeAvalicao.Designer.cs">
+      <DependentUpon>201612081325242_UpdateUnidadeAvalicao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612141325563_CreateNoticia.cs" />
+    <Compile Include="Migrations\201612141325563_CreateNoticia.Designer.cs">
+      <DependentUpon>201612141325563_CreateNoticia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612161347052_FaqMigration.cs" />
+    <Compile Include="Migrations\201612161347052_FaqMigration.Designer.cs">
+      <DependentUpon>201612161347052_FaqMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701192319139_SendEmailPermutaMigration.cs" />
+    <Compile Include="Migrations\201701192319139_SendEmailPermutaMigration.Designer.cs">
+      <DependentUpon>201701192319139_SendEmailPermutaMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701262354008_EventoNotificacaoAtributoMigration.cs" />
+    <Compile Include="Migrations\201701262354008_EventoNotificacaoAtributoMigration.Designer.cs">
+      <DependentUpon>201701262354008_EventoNotificacaoAtributoMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702012330451_EventoDtCadastroMigration.cs" />
+    <Compile Include="Migrations\201702012330451_EventoDtCadastroMigration.Designer.cs">
+      <DependentUpon>201702012330451_EventoDtCadastroMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Helper\Helper.csproj">
+      <Project>{0A651E2F-1D0E-4AA4-B444-68406300DB31}</Project>
+      <Name>Helper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{f055ab64-84e4-473d-a98d-1e03d8f96e28}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201610112350311_melhorias111016.resx">
+      <DependentUpon>201610112350311_melhorias111016.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610181336439_Vagas.resx">
+      <DependentUpon>201610181336439_Vagas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610182240496_ControlUserAccess.resx">
+      <DependentUpon>201610182240496_ControlUserAccess.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610182333095_DtAtividadeNull.resx">
+      <DependentUpon>201610182333095_DtAtividadeNull.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611020126527_MailProvider.resx">
+      <DependentUpon>201611020126527_MailProvider.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611032222556_dadosFuncionario.resx">
+      <DependentUpon>201611032222556_dadosFuncionario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611032253545_dadosFuncionario1.resx">
+      <DependentUpon>201611032253545_dadosFuncionario1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612011351069_Permuta.resx">
+      <DependentUpon>201612011351069_Permuta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612061557394_UpdateUnidade.resx">
+      <DependentUpon>201612061557394_UpdateUnidade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612071315051_UnidadeAvaliacao.resx">
+      <DependentUpon>201612071315051_UnidadeAvaliacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612081325242_UpdateUnidadeAvalicao.resx">
+      <DependentUpon>201612081325242_UpdateUnidadeAvalicao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612141325563_CreateNoticia.resx">
+      <DependentUpon>201612141325563_CreateNoticia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612161347052_FaqMigration.resx">
+      <DependentUpon>201612161347052_FaqMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701192319139_SendEmailPermutaMigration.resx">
+      <DependentUpon>201701192319139_SendEmailPermutaMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701262354008_EventoNotificacaoAtributoMigration.resx">
+      <DependentUpon>201701262354008_EventoNotificacaoAtributoMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702012330451_EventoDtCadastroMigration.resx">
+      <DependentUpon>201702012330451_EventoDtCadastroMigration.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

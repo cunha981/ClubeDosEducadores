@@ -1,0 +1,56 @@
+﻿@model ViewModel.FaleConoscoVMs.FaleConoscoVM
+
+@{
+    ViewBag.Title = "Fale Conosco";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    ViewBag.Menu = "FaleConosco";
+    ViewBag.PageTitle = "Fale Conosco";
+    ViewBag.PageDescription = "Ficamos felizes em poder ajudar, preencha o formulário e nos envie uma mensagem!";
+}
+@Html.ShowAlert()
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="control-label col-md-2">Assunto: </label>
+            <div class="col-md-10">
+                <select class="form-control" id="Assunto" name="Assunto">
+                    <option value="">Selecione um assunto</option>
+                    <option value="Dúvida" @(Model != null && Model.Assunto == "Dúvida" ? "selected='selected'" : "")>Dúvida</option>
+                    <option value="Reclamação" @(Model != null && Model.Assunto == "Reclamação" ? "selected='selected'" : "")>Reclamação</option>
+                    <option value="Sugestão" @(Model != null && Model.Assunto == "Sugestão" ? "selected='selected'" : "")>Sugestão</option>
+                    <option value="Informação" @(Model != null && Model.Assunto == "Informação" ? "selected='selected'" : "")>Informação</option>
+                    <option value="Outro assunto" @(Model != null && Model.Assunto == "Outro assunto" ? "selected='selected'" : "")>Outro assunto</option>
+                </select>
+                @Html.BootstrapValidationMessageFor(model => model.Assunto)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Mensagem: </label>
+            <div class="col-md-10">
+                <textarea class="form-control" rows="10" name="Mensagem" id="Mensagem">@(Model != null ? Model.Mensagem : "")</textarea>
+                @Html.BootstrapValidationMessageFor(model => model.Mensagem)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Receber cópia: </label>
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.ReceberCopia)
+                    @Html.BootstrapValidationMessageFor(model => model.ReceberCopia)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-10 col-md-2">
+                <input type="submit" value="Enviar mensagem" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}

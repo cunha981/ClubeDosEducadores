@@ -1,0 +1,110 @@
+﻿@model ViewModel.EventoVMs.EventoEditVM
+@using Helper
+@{
+    ViewBag.Title = Model.Titulo;
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+<link href="~/assets/js/trumbowyg/ui/trumbowyg.min.css" rel="stylesheet" />
+
+<h2 class="col-md-10">@Model.Titulo</h2>
+<form action="~/Admin/Evento/Delete" method="post">
+    @Html.HiddenFor(model => model.Id)
+    @Html.AntiForgeryToken()
+    <i class="fa fa-trash fa-2x red pull-right pointer m-t-3" title="Apagar" onclick="$(this).parent().submit()"></i>
+</form>
+<div class="clearfix"></div>
+<hr />
+@Html.ShowAlert()
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+    <div class="form-horizontal col-md-11">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Titulo">Título</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Titulo, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.BootstrapValidationMessageFor(model => model.Titulo)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="TipoEvento">Tipo de Evento</label>
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.TipoEvento, new { @class = "form-control" })
+                @Html.BootstrapValidationMessageFor(model => model.TipoEvento)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Resumo">Resumo</label>
+            <div class="col-md-10">
+                <textarea class="form-control" rows="5" maxlength="1000" name="Resumo" required id="Resumo">@(Model != null ? Model.Resumo : "")</textarea>
+                @Html.BootstrapValidationMessageFor(model => model.Resumo)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Descricao">Descrição</label>
+            <div class="col-md-10">
+                <textarea class="form-control textarea-html" rows="5" name="Descricao" required id="Descricao">@(Model != null ? Model.Descricao : "")</textarea>
+                @Html.BootstrapValidationMessageFor(model => model.Descricao)
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            <label class="control-label col-md-2" for="EnviarEmail" data-toggle="tooltip" title="Notifica todos os usuários por e-mail que permitiram ser avisados sobre este tipo de evento">
+                Enviar/Reenviar E-Mail
+                <i class="fa fa-question"></i>
+            </label>
+            <div class="col-md-10">
+                <div class="checkbox">
+                    <div class="col-md-1">
+                        @Html.RadioButtonFor(model => model.EnviarEmail, true) Sim
+                    </div>
+                    <div class="col-md-1">
+                        @Html.RadioButtonFor(model => model.EnviarEmail, false) Não
+                    </div>
+                    @Html.BootstrapValidationMessageFor(model => model.EnviarEmail)
+                </div>
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Url">Link</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Url, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.BootstrapValidationMessageFor(model => model.Url)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="DtEvento" data-toggle="tooltip" title="Exemplo: @(DateTime.Now.ToString("dd/MM/yyyy HH:mm"))">
+                Data do Evento
+                <i class="fa fa-question"></i>
+            </label>
+            <div class="col-md-10">
+                <input type="datetime" id="DtEvento" name="DtEvento" class="form-control" required placeholder="00/00/0000 00:00" value="@(Model?.DtEvento.ToString("dd/MM/yyyy HH:mm"))" data-mask="00/00/0000 00:00" />
+                @Html.BootstrapValidationMessageFor(model => model.DtEvento)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Salvar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+<div class="clearfix"></div>
+@Html.ActionLink("Voltar para Eventos", "Index")
+<script src="~/assets/js/trumbowyg/trumbowyg.min.js"></script>
+<script>
+    $(function () {
+        $('.textarea-html').trumbowyg({
+            semantic: false
+        });
+    })
+</script>

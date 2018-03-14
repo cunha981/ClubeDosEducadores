@@ -1,0 +1,94 @@
+﻿@model IEnumerable<ViewModel.RemocaoVMs.IndicacaoRemocaoPotencialVM>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/assets/css/bootstrap.css" rel="stylesheet" />
+    <title>Indicacao = @ViewBag.FuncionarioId</title>
+    <style>
+        td {
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <table class="table table-responsive table-striped">
+        <tr>
+            <th>
+                Região
+            </th>
+            <th>
+                Unidade
+            </th>
+            <th>
+                Endereço
+            </th>
+            <th>
+                Difícil Acesso
+            </th>
+            <th>
+                Telefone
+            </th>
+            <th>
+                E-mail
+            </th>
+            <th>
+                Vagas Iniciais
+            </th>
+            <th>
+                Vagas Potênciais
+            </th>
+            <th>
+                Distância (Kms)
+            </th>
+            <th>
+                Google Maps
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Regiao
+                </td>
+                <td>
+                    @item.Unidade
+                </td>
+                <td>
+                    @item.Endereco
+                </td>
+                <td>
+                    @item.DificilAcesso
+                </td>
+                <td>
+                    @item.Telefone
+                </td>
+                <td>
+                    @item.Email
+                </td>
+                <td>
+                    @item.VagasIniciais
+                </td>
+                <td>
+                    @item.VagasPotenciais
+                </td>
+                <td>
+                    @item.Distancia
+                </td>
+                <td>
+                    @item.GoogleMaps
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>
